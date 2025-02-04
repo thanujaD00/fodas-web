@@ -1,43 +1,48 @@
 const mongoose = require('mongoose');
 
-const blogSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: [true, 'Title is required'],
-    trim: true
-  },
-  content: {
-    type: String,
-    required: [true, 'Content is required']
-  },
-  author: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
-  image: {
-    type: String,
-    default: ''
-  },
-  categories: [{
-    type: String,
-    trim: true
-  }],
-  tags: [{
-    type: String,
-    trim: true
-  }],
-  status: {
-    type: String,
-    enum: ['draft', 'published'],
-    default: 'draft'
-  }
+const commentSchema = new mongoose.Schema({
+    content: {
+        type: String,
+        required: true
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    }
 }, {
-  timestamps: true
+    timestamps: true
 });
 
-// Add text index for search functionality
-blogSchema.index({ title: 'text', content: 'text' });
+const blogSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    content: {
+        type: String,
+        required: true
+    },
+    image: {
+        type: String
+    },
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    category: {
+        type: String,
+        required: true,
+        enum: ['astronomy', 'space-science', 'research', 'technology', 'exploration']
+    },
+    likes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    comments: [commentSchema]
+}, {
+    timestamps: true
+});
 
-const Blog = mongoose.model('Blog', blogSchema);
-module.exports = Blog;
+module.exports = mongoose.model('Blog', blogSchema);
