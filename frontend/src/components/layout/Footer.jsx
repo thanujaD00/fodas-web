@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-b from-black to-gray-900 text-white">
       {/* Newsletter Section */}
-      <div className="">
+      {/* <div className="">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
             <div>
@@ -35,7 +35,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -67,7 +67,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <div className="grid grid-cols-2 gap-2">
               {['Home', 'About', 'Blog', 'Research', 'Publications', 'Events'].map((item) => (
-                <Link 
+                <Link
                   key={item}
                   to={`/${item.toLowerCase()}`}
                   className="text-gray-400 hover:text-white flex items-center gap-1 transition-colors"
@@ -107,26 +107,10 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="md:flex md:items-center md:justify-between text-gray-400 text-sm">
-            <div className="text-center md:text-left">
-              <p>&copy; {currentYear} FOADS. All rights reserved.</p>
-            </div>
-            <div className="mt-2 md:mt-0 flex justify-center md:justify-end space-x-6">
-              <Link to="/privacy-policy" className="hover:text-white transition-colors">
-                Privacy Policy
-              </Link>
-              <Link to="/terms" className="hover:text-white transition-colors">
-                Terms of Use
-              </Link>
-              <Link to="/sitemap" className="hover:text-white transition-colors">
-                Sitemap
-              </Link>
-            </div>
-          </div>
-        </div>
+      <div className="flex justify-center items-center h-16 text-gray-400 text-sm">
+        <p>&copy; {currentYear} FOADS. All rights reserved.</p>
       </div>
+
     </footer>
   );
 };
